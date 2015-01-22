@@ -25,17 +25,15 @@ class TaskDetailController: UITableViewController, TaskDelegate {
     
     struct TaskCell {
         static let Identifier = "TaskCell"
-        static let StartTime = 1
-        static let EndTime = 2
-        static let Task = 3
+        static let Length = 1
+        static let Task = 2
     }
     
 
     var task:Task!
     var currentDate:NSDate!
-    var formatter = NSDateFormatter()
     var taskDelegate:TaskDelegate?
-    var nextSlot:Double!
+    var nextSlot:Int!
 
 
     override func viewDidLoad() {
@@ -45,7 +43,6 @@ class TaskDetailController: UITableViewController, TaskDelegate {
 
         self.addNavigationBarTitle(dayFormatter.stringFromDate(currentDate), attributes: nil)
         self.addRightButton("edit", title: "Edit", callback: nil)
-        formatter.dateFormat = "hh:mm a"
         self.tableView.hideFooter()
     }
 
@@ -58,8 +55,7 @@ class TaskDetailController: UITableViewController, TaskDelegate {
         if indexPath.row == 0 {
             cell = tableView.dequeueReusableCellWithIdentifier(TaskCell.Identifier, forIndexPath: indexPath) as UITableViewCell
             (cell.contentView.viewWithTag(TaskCell.Task) as UILabel).text = task.name
-            (cell.contentView.viewWithTag(TaskCell.StartTime) as UILabel).text = formatter.stringFromDate(task.startDate)
-            (cell.contentView.viewWithTag(TaskCell.EndTime) as UILabel).text = formatter.stringFromDate(task.endTime)
+            (cell.contentView.viewWithTag(TaskCell.Length) as UILabel).text = task.lengthFormatted
         } else {
             cell = tableView.dequeueReusableCellWithIdentifier(TaskDetail.Identifier, forIndexPath: indexPath) as UITableViewCell
             (cell.contentView.viewWithTag(TaskDetail.Detail) as UILabel).text = task.info

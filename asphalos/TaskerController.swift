@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TaskerController: UITableViewController, TaskDelegate {
+class TaskerController: UITableViewController, TaskDelegate, TaskMarked {
 
     struct TaskCell {
         static let StartTime = 1
@@ -73,10 +73,11 @@ class TaskerController: UITableViewController, TaskDelegate {
         self.navigationController?.navigationBar.translucent = false
         self.tabBarItem.image = UIImage(named: "Tick")
         self.tabBarItem.selectedImage = UIImage(named: "TickSelected")
-        self.tableView.hideFooter()
         let longGesture = UILongPressGestureRecognizer(target: self, action: "longGestureRecognized:")
         self.tableView.addGestureRecognizer(longGesture)
         self.setupHeader(false)
+        self.tableView.registerClass(TaskViewCell.self, forCellReuseIdentifier: "TaskViewCell")
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
 
         currentDate = NSDate()
     }
@@ -99,7 +100,7 @@ class TaskerController: UITableViewController, TaskDelegate {
 
         self.tasks = NSManagedObject.fetch("Task", predicates:{ () -> NSPredicate in
             return predicate
-            }, sortKeys: [("startDate", true)]) as [Task]
+            }, sortKeys: [("startDate", true), ("order", true)]) as [Task]
 
         if reload {
             self.tableView.reloadData()
@@ -122,49 +123,52 @@ class TaskerController: UITableViewController, TaskDelegate {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(toggleListOn ? "TaskListCell" : "TaskCell", forIndexPath: indexPath) as UITableViewCell
-        self.updateCell(cell, task: tasks[indexPath.row])
+        let cell = tableView.dequeueReusableCellWithIdentifier("TaskViewCell", forIndexPath: indexPath) as TaskViewCell
+        self.updateCell(cell, task: tasks[indexPath.row], rowNum: indexPath.row)
+        cell.taskMarkDelegate = self
         return cell
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return toggleListOn ? 70 : 55
+        if toggleListOn {
+            return 70
+        }
+
+        var fontSize:CGFloat = otherCellFontSize
+
+        switch (indexPath.row) {
+        case 0:
+            fontSize = firstCellFontSize
+        case 1:
+            fontSize = secondCellFontSize
+        case 2:
+            fontSize = thirdCellFontSize
+        default:
+            fontSize = otherCellFontSize
+        }
+
+        let font:UIFont! = UIFont(name: Globals.Theme.RegularFont, size: fontSize)
+
+        let textLabelWidth:CGFloat = self.view.frame.size.width - 54 - 7
+        var height = UILabel.getHeight(tasks[indexPath.row].name, font: font, width: textLabelWidth, height: 20000.0)
+        if height < 21 {
+            height = 21
+        }
+
+        return ceil(height) + 75
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.pushControllerOnNavigationStack("TaskDetailController", callback: { (controller:TaskDetailController) -> () in
             controller.task = self.tasks[indexPath.row]
             controller.currentDate = self.currentDate
-            controller.nextSlot = self.getLatestTime()
+            controller.nextSlot = self.nextSlot()
             controller.taskDelegate = self
         }, transitionSyle: nil)
     }
 
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject] {
-        var completeAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Done") {
-            (action, indexPath) -> Void in
-            let task = self.tasks[indexPath.row]
-            task.completed = NSNumber(bool: true)
-            Task.save()
-            self.tasks.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
-            tableView.setEditing(false, animated: false)
-        }
-        completeAction.backgroundColor = UIColor.greenColor()
-
-        return [completeAction]
-    }
-
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    }
-
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
-    }
-
-    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        (tasks[sourceIndexPath.row], tasks[destinationIndexPath.row]) = (tasks[destinationIndexPath.row], tasks[sourceIndexPath.row])
-        self.tableView.editing = false
     }
 
 
@@ -173,7 +177,7 @@ class TaskerController: UITableViewController, TaskDelegate {
         self.pushControllerOnNavigationStack("TaskEditController", callback: { (controller:TaskEditController) -> () in
             controller.taskDelegate = self
             controller.currentDate = self.currentDate
-            controller.nextSlot = self.getLatestTime()
+            controller.nextSlot = self.nextSlot()
         }, transitionSyle: nil)
     }
 
@@ -188,37 +192,37 @@ class TaskerController: UITableViewController, TaskDelegate {
     @IBAction func forward(sender: AnyObject) {
         var dayComponent = NSDateComponents()
         dayComponent.day = 1
-        currentDate = calendar.dateByAddingComponents(dayComponent, toDate: currentDate, options: NSCalendarOptions.allZeros)!
+        dayComponent.hour = 9
+        var tempDate = calendar.dateByAddingComponents(dayComponent, toDate: currentDate, options: NSCalendarOptions.allZeros)!
+        currentDate = calendar.dateBySettingHour(9, minute: 0, second: 0, ofDate: tempDate, options: NSCalendarOptions.allZeros)!
     }
 
     @IBAction func back(sender: AnyObject) {
         var dayComponent = NSDateComponents()
         dayComponent.day = -1
-        currentDate = calendar.dateByAddingComponents(dayComponent, toDate: currentDate, options: NSCalendarOptions.allZeros)!
-
+        dayComponent.hour = 9
+        var tempDate = calendar.dateByAddingComponents(dayComponent, toDate: currentDate, options: NSCalendarOptions.allZeros)!
+        currentDate = calendar.dateBySettingHour(9, minute: 0, second: 0, ofDate: tempDate, options: NSCalendarOptions.allZeros)!
     }
 
     ///MARK: Moving rows
 
     ///Update cell helper method
-    func updateCell(cell:UITableViewCell, task:Task) {
+    func updateCell(cell:TaskViewCell, task:Task, rowNum:Int) {
+        cell.rowNum = rowNum
+        cell.isLastRow = (rowNum + 1) == tasks.count
         var formatter = NSDateFormatter()
-        formatter.dateFormat = "hh:mm a"
         var components = NSCalendar.currentCalendar().components(NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.YearCalendarUnit, fromDate: task.startDate)
+
+        cell.textLabel?.text = task.name
+        var dueTimeParts = ""
 
         if toggleListOn {
             formatter.dateFormat = "MMM"
-            (cell.contentView.viewWithTag(TaskListCell.Task) as UILabel).text = task.name
-            (cell.contentView.viewWithTag(TaskListCell.Day) as UILabel).text = "\(components.day)"
-            (cell.contentView.viewWithTag(TaskListCell.Month) as UILabel).text = "\(formatter.stringFromDate(task.startDate))"
-            (cell.contentView.viewWithTag(TaskListCell.Year) as UILabel).text = "\(components.year)"
-            formatter.dateFormat = "hh:mm a"
-            (cell.contentView.viewWithTag(TaskListCell.Time) as UILabel).text = "\(formatter.stringFromDate(task.startDate)) - \(formatter.stringFromDate(task.endTime))"
-        } else {
-            (cell.contentView.viewWithTag(TaskCell.Task) as UILabel).text = task.name
-            (cell.contentView.viewWithTag(TaskCell.StartTime) as UILabel).text = formatter.stringFromDate(task.startDate)
-            (cell.contentView.viewWithTag(TaskCell.EndTime) as UILabel).text = formatter.stringFromDate(task.endTime)
+            dueTimeParts = "\(components.day), \(formatter.stringFromDate(task.startDate)) \(components.year) - "
         }
+
+        cell.dueTime.text = "\(dueTimeParts)\(task.lengthFormatted)"
     }
 
 
@@ -263,11 +267,14 @@ class TaskerController: UITableViewController, TaskDelegate {
             center?.y = location.y
             snapshot?.center = center!
             if indexPath != nil && !(indexPath == sourceIndex) {
-                Task.SwapTimes(tasks[indexPath!.row], destination: tasks[sourceIndex!.row])
+                Task.SwapOrder(tasks[indexPath!.row], destination: tasks[sourceIndex!.row])
                 (tasks[indexPath!.row], tasks[sourceIndex!.row]) = (tasks[sourceIndex!.row], tasks[indexPath!.row])
                 self.tableView.moveRowAtIndexPath(sourceIndex!, toIndexPath: indexPath!)
-                self.updateCell(self.tableView.cellForRowAtIndexPath(sourceIndex!)!, task: tasks[sourceIndex!.row])
-                self.updateCell(self.tableView.cellForRowAtIndexPath(indexPath!)!, task: tasks[indexPath!.row])
+                self.updateCell(self.tableView.cellForRowAtIndexPath(sourceIndex!)! as TaskViewCell, task: tasks[sourceIndex!.row], rowNum: sourceIndex!.row)
+                self.updateCell(self.tableView.cellForRowAtIndexPath(indexPath!)! as TaskViewCell, task: tasks[indexPath!.row], rowNum: indexPath!.row)
+                UIView.delay(0.5, callback: { () -> () in
+                    self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
+                })
                 sourceIndex = indexPath
             }
             break
@@ -298,11 +305,22 @@ class TaskerController: UITableViewController, TaskDelegate {
     }
 
     ///get total minutes taken
-    func getLatestTime() -> Double {
-        var takenSlots:Double = 0.0
-        for task in tasks {
-            takenSlots += Double(task.length)
+    func nextSlot() -> Int {
+        return tasks.count > 0 ? tasks[tasks.count - 1].order.integerValue + 1 : 1
+    }
+
+    func taskMarked(rowNum: Int, selected: Bool) {
+        let task = self.tasks[rowNum]
+        task.completed = NSNumber(bool: selected)
+        Task.save()
+        if selected {
+            self.tasks.removeAtIndex(rowNum)
+            let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: rowNum, inSection: 0)) as TaskViewCell
+            self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: rowNum, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
+            UIView.delay(0.5, callback: { () -> () in
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
+                cell.reset()
+            })
         }
-        return takenSlots
     }
 }

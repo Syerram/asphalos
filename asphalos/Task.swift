@@ -17,21 +17,28 @@ class Task: NSManagedObject {
     @NSManaged var info: String
     @NSManaged var completed: NSNumber
     @NSManaged var actual: NSNumber
-
+    @NSManaged var order: NSNumber
 
     ///MARK: Non managed
-    var endTime:NSDate {
+    var lengthFormatted:String {
         get {
-            var interval:NSTimeInterval = Double(length) * 60.00
-            return self.startDate.dateByAddingTimeInterval(interval)
+            var hours = self.length.integerValue / 60
+            var mins = self.length.integerValue % 60
+            if hours > 0 {
+                return "\(hours) hrs and \(mins) mins"
+            } else {
+                return "\(mins) mins"
+            }
         }
     }
 
     ///Swap the task timings with each other
-    class func SwapTimes(source:Task, destination:Task) {
+    class func SwapOrder(source:Task, destination:Task) {
         var startDate = destination.startDate
         destination.startDate = source.startDate
         source.startDate = startDate
+        (destination.order, source.order) = (source.order, destination.order)
+
         Task.save()
     }
 

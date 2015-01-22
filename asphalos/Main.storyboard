@@ -28,7 +28,6 @@
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
-            <string>Montserrat-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -258,7 +257,7 @@
                                             <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C7F-dl-6r8">
+                                        <view tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C7F-dl-6r8">
                                             <rect key="frame" x="88" y="0.0" width="1" height="69"/>
                                             <color key="backgroundColor" red="0.7843137255" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -472,16 +471,10 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qvo-yk-ggR" id="nFD-dk-aov">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="startTime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qbh-Q1-Stk">
-                                            <rect key="frame" x="18" y="13" width="67" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="length" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qbh-Q1-Stk">
+                                            <rect key="frame" x="18" y="8" width="70" height="58"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                             <color key="textColor" red="0.53725490196078429" green="0.53725490196078429" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="endTime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1X-er-PvL">
-                                            <rect key="frame" x="18" y="43" width="63" height="18"/>
-                                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
-                                            <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kec-m2-xE8">
@@ -497,7 +490,7 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="task" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNK-Sp-sWD">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="task" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNK-Sp-sWD">
                                             <rect key="frame" x="114" y="26" width="38" height="22"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -507,18 +500,19 @@
                                     <constraints>
                                         <constraint firstItem="wNK-Sp-sWD" firstAttribute="leading" secondItem="Kec-m2-xE8" secondAttribute="trailing" constant="15" id="5A4-0k-Zdv"/>
                                         <constraint firstAttribute="centerY" secondItem="wNK-Sp-sWD" secondAttribute="centerY" id="5os-JX-UcD"/>
-                                        <constraint firstAttribute="centerY" secondItem="Qbh-Q1-Stk" secondAttribute="centerY" constant="15" id="6BV-B5-m0x"/>
+                                        <constraint firstAttribute="centerY" secondItem="Qbh-Q1-Stk" secondAttribute="centerY" id="6BV-B5-m0x"/>
                                         <constraint firstAttribute="centerY" secondItem="Kec-m2-xE8" secondAttribute="centerY" id="AEI-OB-EtZ"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Kec-m2-xE8" secondAttribute="bottom" constant="-8" id="Gbt-5Z-TmL"/>
                                         <constraint firstItem="Kec-m2-xE8" firstAttribute="leading" secondItem="nFD-dk-aov" secondAttribute="leadingMargin" constant="90" id="IkR-du-3AR"/>
+                                        <constraint firstItem="Qbh-Q1-Stk" firstAttribute="top" secondItem="nFD-dk-aov" secondAttribute="topMargin" id="JKZ-v4-t2s"/>
                                         <constraint firstItem="Kec-m2-xE8" firstAttribute="leading" secondItem="nFD-dk-aov" secondAttribute="leadingMargin" constant="90" id="PK9-aa-vFT"/>
-                                        <constraint firstAttribute="centerY" secondItem="A1X-er-PvL" secondAttribute="centerY" constant="-15" id="UrH-Ax-nYC"/>
                                         <constraint firstItem="Kec-m2-xE8" firstAttribute="leading" secondItem="Qbh-Q1-Stk" secondAttribute="trailing" constant="20" id="aih-U8-gcJ"/>
                                         <constraint firstItem="Qbh-Q1-Stk" firstAttribute="leading" secondItem="nFD-dk-aov" secondAttribute="leadingMargin" constant="10" id="b6w-Wy-8Tn"/>
                                         <constraint firstItem="wNK-Sp-sWD" firstAttribute="leading" secondItem="nFD-dk-aov" secondAttribute="leadingMargin" constant="125" id="bzh-ee-BR1"/>
-                                        <constraint firstItem="A1X-er-PvL" firstAttribute="leading" secondItem="nFD-dk-aov" secondAttribute="leadingMargin" constant="10" id="elD-k2-EWf"/>
                                         <constraint firstItem="Kec-m2-xE8" firstAttribute="top" secondItem="nFD-dk-aov" secondAttribute="topMargin" constant="-8" id="hAb-3i-cia"/>
+                                        <constraint firstItem="Kec-m2-xE8" firstAttribute="leading" secondItem="Qbh-Q1-Stk" secondAttribute="trailing" constant="10" id="vXH-c4-ZhE"/>
                                         <constraint firstAttribute="centerX" secondItem="Kec-m2-xE8" secondAttribute="centerX" constant="204.5" id="veZ-09-4hF"/>
+                                        <constraint firstItem="Qbh-Q1-Stk" firstAttribute="bottom" secondItem="nFD-dk-aov" secondAttribute="bottomMargin" id="xZS-Fo-lEj"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">

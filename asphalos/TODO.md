@@ -5,7 +5,7 @@
 * TODO 
     *   Design like Timeful with hours on the left
     *   when navigating to +, we need to know what slot is available (including break time). Use 9AM as starting coordinate
-
+    *   Check if end date is today first before changing its day or hours
 
 ## Enhancements
 1.  Use timeful style of times on the left

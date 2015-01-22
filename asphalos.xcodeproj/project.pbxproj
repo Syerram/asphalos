@@ -64,6 +64,11 @@
 		9B9BED8F1A70930A001847DD /* ListOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9BED8B1A70930A001847DD /* ListOn.png */; };
 		9B9BED901A70930A001847DD /* List@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9BED8C1A70930A001847DD /* List@2x.png */; };
 		9B9BED911A70930A001847DD /* List.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9BED8D1A70930A001847DD /* List.png */; };
+		9B9BED931A713FD0001847DD /* TaskViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9BED921A713FD0001847DD /* TaskViewCell.swift */; };
+		9B9BED961A7141A5001847DD /* Task_Icon_Unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9BED941A7141A5001847DD /* Task_Icon_Unselected.png */; };
+		9B9BED971A7141A5001847DD /* Task_Icon_Unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9BED951A7141A5001847DD /* Task_Icon_Unselected@2x.png */; };
+		9B9BED9A1A7141B8001847DD /* Task_Icon_Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9BED981A7141B8001847DD /* Task_Icon_Selected.png */; };
+		9B9BED9B1A7141B8001847DD /* Task_Icon_Selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9BED991A7141B8001847DD /* Task_Icon_Selected@2x.png */; };
 		9BB825501A662B0B004129E2 /* TaskerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8254F1A662B0B004129E2 /* TaskerController.swift */; };
 		9BB825551A66DAFE004129E2 /* Vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB825511A66DAFE004129E2 /* Vault.png */; };
 		9BB825561A66DAFE004129E2 /* Vault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB825521A66DAFE004129E2 /* Vault@2x.png */; };
@@ -156,6 +161,12 @@
 		9B9BED8B1A70930A001847DD /* ListOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ListOn.png; sourceTree = "<group>"; };
 		9B9BED8C1A70930A001847DD /* List@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "List@2x.png"; sourceTree = "<group>"; };
 		9B9BED8D1A70930A001847DD /* List.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = List.png; sourceTree = "<group>"; };
+		9B9BED921A713FD0001847DD /* TaskViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewCell.swift; sourceTree = "<group>"; };
+		9B9BED941A7141A5001847DD /* Task_Icon_Unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Task_Icon_Unselected.png; sourceTree = "<group>"; };
+		9B9BED951A7141A5001847DD /* Task_Icon_Unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Task_Icon_Unselected@2x.png"; sourceTree = "<group>"; };
+		9B9BED981A7141B8001847DD /* Task_Icon_Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Task_Icon_Selected.png; sourceTree = "<group>"; };
+		9B9BED991A7141B8001847DD /* Task_Icon_Selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Task_Icon_Selected@2x.png"; sourceTree = "<group>"; };
+		9B9BED9C1A715325001847DD /* asphalos 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "asphalos 3.xcdatamodel"; sourceTree = "<group>"; };
 		9BB8254F1A662B0B004129E2 /* TaskerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskerController.swift; sourceTree = "<group>"; };
 		9BB825511A66DAFE004129E2 /* Vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vault.png; sourceTree = "<group>"; };
 		9BB825521A66DAFE004129E2 /* Vault@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Vault@2x.png"; sourceTree = "<group>"; };
@@ -197,6 +208,10 @@
 		9B0B3ABF1A58F5B4003222B9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9B9BED981A7141B8001847DD /* Task_Icon_Selected.png */,
+				9B9BED991A7141B8001847DD /* Task_Icon_Selected@2x.png */,
+				9B9BED941A7141A5001847DD /* Task_Icon_Unselected.png */,
+				9B9BED951A7141A5001847DD /* Task_Icon_Unselected@2x.png */,
 				9B9BED8A1A70930A001847DD /* ListOn@2x.png */,
 				9B9BED8B1A70930A001847DD /* ListOn.png */,
 				9B9BED8C1A70930A001847DD /* List@2x.png */,
@@ -463,6 +478,7 @@
 		9BB8254E1A662AE5004129E2 /* Tasker */ = {
 			isa = PBXGroup;
 			children = (
+				9B9BED921A713FD0001847DD /* TaskViewCell.swift */,
 				9BB8254F1A662B0B004129E2 /* TaskerController.swift */,
 				9BB825591A66DB38004129E2 /* TaskEditController.swift */,
 				9B9BED731A687349001847DD /* TaskDetailController.swift */,
@@ -551,12 +567,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B9BED9B1A7141B8001847DD /* Task_Icon_Selected@2x.png in Resources */,
 				9BF4DC6B1A662015006088F2 /* TickSelected@2x.png in Resources */,
 				9BB825561A66DAFE004129E2 /* Vault@2x.png in Resources */,
 				9BF4DC6A1A662015006088F2 /* TickSelected.png in Resources */,
 				9B2A16461A535193002E5AE4 /* Montserrat-Bold.ttf in Resources */,
 				9BB825601A66E3F0004129E2 /* BackwardWhite.png in Resources */,
 				9BB825551A66DAFE004129E2 /* Vault.png in Resources */,
+				9B9BED971A7141A5001847DD /* Task_Icon_Unselected@2x.png in Resources */,
 				9BF4DC631A661FFB006088F2 /* VaultSelected.png in Resources */,
 				9BB8255F1A66E3F0004129E2 /* BackwardWhite@2x.png in Resources */,
 				9BF4DC621A661FFB006088F2 /* VaultSelected@2x.png in Resources */,
@@ -570,9 +588,11 @@
 				9BB825581A66DAFE004129E2 /* Tick@2x.png in Resources */,
 				9B9BED8E1A70930A001847DD /* ListOn@2x.png in Resources */,
 				9B2A15841A534547002E5AE4 /* LaunchScreen.xib in Resources */,
+				9B9BED9A1A7141B8001847DD /* Task_Icon_Selected.png in Resources */,
 				9BB825611A66E3F0004129E2 /* ForwardWhite@2x.png in Resources */,
 				9B9BED8F1A70930A001847DD /* ListOn.png in Resources */,
 				9B2A15811A534547002E5AE4 /* Images.xcassets in Resources */,
+				9B9BED961A7141A5001847DD /* Task_Icon_Unselected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +654,7 @@
 				9B2A15E71A534848002E5AE4 /* FormSegmentedControlCell.swift in Sources */,
 				9B2A15E61A534848002E5AE4 /* FormPickerCell.swift in Sources */,
 				9B2A15B71A5346F8002E5AE4 /* CategoriesController.swift in Sources */,
+				9B9BED931A713FD0001847DD /* TaskViewCell.swift in Sources */,
 				9B2A15C61A534738002E5AE4 /* MasterPasswordController.swift in Sources */,
 				9B2A15ED1A534848002E5AE4 /* FormMultiLineLabelCell.swift in Sources */,
 				9B2A15F21A534857002E5AE4 /* FormBaseCell.swift in Sources */,
@@ -847,9 +868,10 @@
 			isa = XCVersionGroup;
 			children = (
 				9B9BED751A68B3AC001847DD /* asphalos 2.xcdatamodel */,
+				9B9BED9C1A715325001847DD /* asphalos 3.xcdatamodel */,
 				9B2A15791A534547002E5AE4 /* asphalos.xcdatamodel */,
 			);
-			currentVersion = 9B9BED751A68B3AC001847DD /* asphalos 2.xcdatamodel */;
+			currentVersion = 9B9BED9C1A715325001847DD /* asphalos 3.xcdatamodel */;
 			path = asphalos.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

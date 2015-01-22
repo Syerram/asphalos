@@ -23,7 +23,7 @@ class TaskEditController: FormViewController, FormViewControllerDelegate {
 
     var task:Task! = nil
     var currentDate:NSDate!
-    var nextSlot:Double!
+    var nextSlot:Int!
     var taskDelegate:TaskDelegate?
 
     var isNew:Bool {
@@ -106,27 +106,8 @@ class TaskEditController: FormViewController, FormViewControllerDelegate {
         2. Add breaks in between. Count the total breaks they need
 
     */
-    func getTaskStartTime(length:Int) -> NSDate {
-        var components = NSCalendar.currentCalendar().components(NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit, fromDate: currentDate)
-
-        components.hour = (components.hour < 9 ? 9 : components.hour) + Int(nextSlot / 60)
-        components.minute = components.minute + Int(nextSlot % 60)
-
-        var startDate = NSCalendar.currentCalendar().dateFromComponents(components)!
-        var lengthComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit, fromDate: startDate)
-
-        lengthComponents.hour += Int(length / 60)
-        lengthComponents.minute += Int(length % 60)
-
-        if lengthComponents.hour > 20 {
-            //move to next day
-            components.day += 1
-            components.minute = 0
-            components.hour = 9
-        }
-        components.second = 0
-
-        return NSCalendar.currentCalendar().dateFromComponents(components)!
+    func getTaskStartTime() -> NSDate {
+        return NSCalendar.currentCalendar().dateBySettingHour(0, minute: 0, second: 0, ofDate: currentDate, options: NSCalendarOptions.allZeros)!
     }
 
     func save() {
@@ -138,12 +119,12 @@ class TaskEditController: FormViewController, FormViewControllerDelegate {
             self.task = NSManagedObject.newEntity("Task") as Task
         }
         self.task.length = (values.objectForKey("length") as String).toInt()!
-        self.task.startDate = getTaskStartTime(self.task.length.integerValue)
+        self.task.startDate = getTaskStartTime()
         self.task.name = values.objectForKey(Fields.Task) as String
         self.task.info = (values.objectForKey("info") as String)
         self.task.completed = false
         self.task.actual = 0
-
+        self.task.order = nextSlot
         Task.save()
 
         self.proxy(taskDelegate, callback: { (object:TaskDelegate) -> () in

@@ -64,6 +64,25 @@ extension UIView {
         return image
     }
 
+    class func colorizeImage(image:UIImage, withColor color:UIColor) -> UIImage {
+        var rect:CGRect = CGRectMake(0, 0, image.size.width, image.size.height);
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, image.scale);
+        var c:CGContextRef = UIGraphicsGetCurrentContext();
+        image.drawInRect(rect)
+        CGContextSetFillColorWithColor(c, color.CGColor);
+        CGContextSetBlendMode(c, kCGBlendModeSourceAtop);
+        CGContextFillRect(c, rect);
+
+        var result:UIImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return result;
+    }
+
+    class func delay(delay:Double, callback:() -> ()) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC))),
+            dispatch_get_main_queue(), callback)
+    }
+
 }
 
 extension UIImageView {
@@ -103,6 +122,11 @@ extension UILabel {
         textView.text = self.text!
         var newSize:CGSize = textView.sizeThatFits(CGSizeMake(width, CGFloat(MAXFLOAT)))
         return newSize.height
+    }
+
+    class func getHeight(text:String, font:UIFont, width:CGFloat, height:CGFloat) -> CGFloat {
+        let size = (text as NSString).boundingRectWithSize(CGSizeMake(width, height), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:font], context: nil)
+        return size.height
     }
 }
 
@@ -307,4 +331,16 @@ extension SFSwiftNotification {
         }
         return notifyView
     }
+}
+
+extension NSDate {
+
+    func isBefore(date:NSDate) -> Bool {
+        return self.compare(date) == NSComparisonResult.OrderedAscending
+    }
+
+    func isLater(date:NSDate) -> Bool {
+        return self.compare(date) == NSComparisonResult.OrderedDescending
+    }
+
 }
