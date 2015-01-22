@@ -33,6 +33,10 @@ class CategoriesController: UITableViewController, CategoryDelegate, SettingsDel
         self.updateBackButton("Back")
         self.refreshControl = self.addPullToDrag("refreshOnPullToDrag")
 
+        self.navigationController?.navigationBar.translucent = false
+        self.tabBarItem.image = UIImage(named: "Vault")
+        self.tabBarItem.selectedImage = UIImage(named: "VaultSelected")
+
         //Data
         loadData(reload: false)
     }

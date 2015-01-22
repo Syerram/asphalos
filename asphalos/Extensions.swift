@@ -29,6 +29,41 @@ extension UIView {
             self.removeFromSuperview()
         }
     }
+
+    //sizing descriptors
+    var height : CGFloat {
+
+        get {   return frame.height    }
+        set {
+            var frame : CGRect = self.frame
+            frame.size.height = newValue
+            self.frame = frame }
+    }
+
+    ///Return a new view with snapshot of the current view
+    func snapshot() -> UIView {
+        var image:UIImage = self.snapshotImage()
+
+        var snapshot:UIView = UIImageView(image: image)
+        snapshot.layer.masksToBounds = false
+        snapshot.layer.cornerRadius = 0.0
+        snapshot.layer.shadowOffset = CGSizeMake(-5.0, 0)
+        snapshot.layer.shadowRadius = 5.0
+        snapshot.layer.shadowOpacity = 0.4
+
+        return snapshot
+    }
+
+    ///Snapshot of the current view
+    func snapshotImage() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, 0)
+        self.layer.renderInContext(UIGraphicsGetCurrentContext())
+        var image:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return image
+    }
+
 }
 
 extension UIImageView {
@@ -60,7 +95,31 @@ extension UITableView {
     }
 }
 
+extension UILabel {
+
+    func getHeight(width:CGFloat) -> CGFloat {
+        let textView:UITextView = UITextView()
+        textView.font = self.font
+        textView.text = self.text!
+        var newSize:CGSize = textView.sizeThatFits(CGSizeMake(width, CGFloat(MAXFLOAT)))
+        return newSize.height
+    }
+}
+
 extension UIViewController {
+
+    ///Update tab bar item with the image and title
+    func updateTabBarItem(tabBarItem:UITabBarItem, title:String, image:UIImage, selectedImage:UIImage? = nil) {
+        tabBarItem.image = image
+        if let _selImage = selectedImage {
+            tabBarItem.selectedImage = selectedImage
+        }
+        tabBarItem.title = title
+    }
+
+    func updateTabBarItem(title:String, image:UIImage, selectedImage:UIImage? = nil) {
+        self.updateTabBarItem(self.tabBarItem, title: title, image: image, selectedImage: selectedImage)
+    }
 
     ///Add a title to the navigation bar
     ///Uses label to set the title
@@ -144,6 +203,7 @@ extension UIViewController {
     ///@param: nibName: Pass the storyboard name for the controller
     ///@param: callback: Pass the code block. Ensure to provide the actual type of your controller
     func pushControllerOnNavigationStack<T>(nibName:String, callback:(controller:T) -> (), transitionSyle:UIViewAnimationTransition? = nil) -> T {
+        self.navigationItem.title = ""
         var controller:T = self.storyboard?.instantiateViewControllerWithIdentifier(nibName)! as T
         callback(controller: controller)
         var currentView = self.navigationController!.view
@@ -161,6 +221,7 @@ extension UIViewController {
 
     ///Push the provided controller on to the stack with transition style if any
     func pushControllerOnNavigationStack<T>(controller:T, transitionSyle:UIViewAnimationTransition? = nil) {
+        self.navigationItem.title = ""
         var currentView = self.navigationController!.view
         if transitionSyle != nil {
             UIView.animateWithDuration(0.75, animations: { () -> Void in
@@ -181,6 +242,15 @@ extension UIViewController {
             appDelegate.window!.rootViewController = controller
         }, completion: nil)
 
+    }
+
+    ///Present as Model
+    func presentAsModalController<T>(nibName:String, callback:(controller:T) -> ()) {
+        var controller:T = self.storyboard?.instantiateViewControllerWithIdentifier(nibName)! as T
+        callback(controller: controller)
+        var presentingController = controller as UIViewController
+        presentingController.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+        self.presentViewController(presentingController, animated: true, completion: nil)
     }
 
 

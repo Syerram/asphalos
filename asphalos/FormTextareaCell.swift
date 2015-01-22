@@ -28,7 +28,7 @@ class FormTextareaCell: FormBaseCell, UITextViewDelegate {
     }
     
     override class func formRowCellHeight() -> CGFloat {
-        return 176
+        return 200
     }
     
     override func update() {

@@ -58,8 +58,28 @@
 		9B2A16431A534F60002E5AE4 /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2A16421A534F60002E5AE4 /* LocksmithRequest.swift */; };
 		9B2A16461A535193002E5AE4 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B2A16441A535183002E5AE4 /* Montserrat-Bold.ttf */; };
 		9B2A16471A535193002E5AE4 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B2A16451A535183002E5AE4 /* Montserrat-Regular.ttf */; };
+		9B6DBD271A67196800EAD5C5 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6DBD261A67196800EAD5C5 /* Task.swift */; };
+		9B9BED741A687349001847DD /* TaskDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9BED731A687349001847DD /* TaskDetailController.swift */; };
+		9B9BED8E1A70930A001847DD /* ListOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9BED8A1A70930A001847DD /* ListOn@2x.png */; };
+		9B9BED8F1A70930A001847DD /* ListOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9BED8B1A70930A001847DD /* ListOn.png */; };
+		9B9BED901A70930A001847DD /* List@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9BED8C1A70930A001847DD /* List@2x.png */; };
+		9B9BED911A70930A001847DD /* List.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B9BED8D1A70930A001847DD /* List.png */; };
+		9BB825501A662B0B004129E2 /* TaskerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8254F1A662B0B004129E2 /* TaskerController.swift */; };
+		9BB825551A66DAFE004129E2 /* Vault.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB825511A66DAFE004129E2 /* Vault.png */; };
+		9BB825561A66DAFE004129E2 /* Vault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB825521A66DAFE004129E2 /* Vault@2x.png */; };
+		9BB825571A66DAFE004129E2 /* Tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB825531A66DAFE004129E2 /* Tick.png */; };
+		9BB825581A66DAFE004129E2 /* Tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB825541A66DAFE004129E2 /* Tick@2x.png */; };
+		9BB8255A1A66DB38004129E2 /* TaskEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB825591A66DB38004129E2 /* TaskEditController.swift */; };
+		9BB8255F1A66E3F0004129E2 /* BackwardWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB8255B1A66E3F0004129E2 /* BackwardWhite@2x.png */; };
+		9BB825601A66E3F0004129E2 /* BackwardWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB8255C1A66E3F0004129E2 /* BackwardWhite.png */; };
+		9BB825611A66E3F0004129E2 /* ForwardWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB8255D1A66E3F0004129E2 /* ForwardWhite@2x.png */; };
+		9BB825621A66E3F0004129E2 /* ForwardWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB8255E1A66E3F0004129E2 /* ForwardWhite.png */; };
 		9BE9F07C1A5365CF00105358 /* FormPlainTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE9F07B1A5365CF00105358 /* FormPlainTextFieldCell.swift */; };
 		9BE9F07E1A53678D00105358 /* TODO.md in Sources */ = {isa = PBXBuildFile; fileRef = 9BE9F07D1A53678D00105358 /* TODO.md */; };
+		9BF4DC621A661FFB006088F2 /* VaultSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF4DC5E1A661FFB006088F2 /* VaultSelected@2x.png */; };
+		9BF4DC631A661FFB006088F2 /* VaultSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF4DC5F1A661FFB006088F2 /* VaultSelected.png */; };
+		9BF4DC6A1A662015006088F2 /* TickSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF4DC661A662015006088F2 /* TickSelected.png */; };
+		9BF4DC6B1A662015006088F2 /* TickSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF4DC671A662015006088F2 /* TickSelected@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,8 +149,29 @@
 		9B2A16421A534F60002E5AE4 /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithRequest.swift; sourceTree = "<group>"; };
 		9B2A16441A535183002E5AE4 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		9B2A16451A535183002E5AE4 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		9B6DBD261A67196800EAD5C5 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		9B9BED731A687349001847DD /* TaskDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailController.swift; sourceTree = "<group>"; };
+		9B9BED751A68B3AC001847DD /* asphalos 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "asphalos 2.xcdatamodel"; sourceTree = "<group>"; };
+		9B9BED8A1A70930A001847DD /* ListOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ListOn@2x.png"; sourceTree = "<group>"; };
+		9B9BED8B1A70930A001847DD /* ListOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ListOn.png; sourceTree = "<group>"; };
+		9B9BED8C1A70930A001847DD /* List@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "List@2x.png"; sourceTree = "<group>"; };
+		9B9BED8D1A70930A001847DD /* List.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = List.png; sourceTree = "<group>"; };
+		9BB8254F1A662B0B004129E2 /* TaskerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskerController.swift; sourceTree = "<group>"; };
+		9BB825511A66DAFE004129E2 /* Vault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vault.png; sourceTree = "<group>"; };
+		9BB825521A66DAFE004129E2 /* Vault@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Vault@2x.png"; sourceTree = "<group>"; };
+		9BB825531A66DAFE004129E2 /* Tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tick.png; sourceTree = "<group>"; };
+		9BB825541A66DAFE004129E2 /* Tick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tick@2x.png"; sourceTree = "<group>"; };
+		9BB825591A66DB38004129E2 /* TaskEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEditController.swift; sourceTree = "<group>"; };
+		9BB8255B1A66E3F0004129E2 /* BackwardWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BackwardWhite@2x.png"; sourceTree = "<group>"; };
+		9BB8255C1A66E3F0004129E2 /* BackwardWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackwardWhite.png; sourceTree = "<group>"; };
+		9BB8255D1A66E3F0004129E2 /* ForwardWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ForwardWhite@2x.png"; sourceTree = "<group>"; };
+		9BB8255E1A66E3F0004129E2 /* ForwardWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForwardWhite.png; sourceTree = "<group>"; };
 		9BE9F07B1A5365CF00105358 /* FormPlainTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormPlainTextFieldCell.swift; sourceTree = "<group>"; };
 		9BE9F07D1A53678D00105358 /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		9BF4DC5E1A661FFB006088F2 /* VaultSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VaultSelected@2x.png"; sourceTree = "<group>"; };
+		9BF4DC5F1A661FFB006088F2 /* VaultSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VaultSelected.png; sourceTree = "<group>"; };
+		9BF4DC661A662015006088F2 /* TickSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TickSelected.png; sourceTree = "<group>"; };
+		9BF4DC671A662015006088F2 /* TickSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TickSelected@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +197,22 @@
 		9B0B3ABF1A58F5B4003222B9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9B9BED8A1A70930A001847DD /* ListOn@2x.png */,
+				9B9BED8B1A70930A001847DD /* ListOn.png */,
+				9B9BED8C1A70930A001847DD /* List@2x.png */,
+				9B9BED8D1A70930A001847DD /* List.png */,
+				9BB825511A66DAFE004129E2 /* Vault.png */,
+				9BB825521A66DAFE004129E2 /* Vault@2x.png */,
+				9BB825531A66DAFE004129E2 /* Tick.png */,
+				9BB825541A66DAFE004129E2 /* Tick@2x.png */,
+				9BF4DC661A662015006088F2 /* TickSelected.png */,
+				9BB8255B1A66E3F0004129E2 /* BackwardWhite@2x.png */,
+				9BB8255C1A66E3F0004129E2 /* BackwardWhite.png */,
+				9BB8255D1A66E3F0004129E2 /* ForwardWhite@2x.png */,
+				9BB8255E1A66E3F0004129E2 /* ForwardWhite.png */,
+				9BF4DC671A662015006088F2 /* TickSelected@2x.png */,
+				9BF4DC5E1A661FFB006088F2 /* VaultSelected@2x.png */,
+				9BF4DC5F1A661FFB006088F2 /* VaultSelected.png */,
 				9B0B3AC01A58F5BB003222B9 /* asphalosPortrait.png */,
 			);
 			name = Images;
@@ -190,6 +247,7 @@
 				9B2A15C11A53471D002E5AE4 /* Authentication */,
 				9B2A15CE1A5347D8002E5AE4 /* Models */,
 				9B2A15B31A5346E7002E5AE4 /* Categories */,
+				9BB8254E1A662AE5004129E2 /* Tasker */,
 				9B2A15C21A53472D002E5AE4 /* Settings */,
 				9B2A15BA1A534702002E5AE4 /* Account */,
 				9B2A15A81A534644002E5AE4 /* Libraries */,
@@ -338,6 +396,7 @@
 			children = (
 				9B2A16051A5348BA002E5AE4 /* Account.swift */,
 				9B2A16031A5348BA002E5AE4 /* Category.swift */,
+				9B6DBD261A67196800EAD5C5 /* Task.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -399,6 +458,16 @@
 				9B2A163E1A534E93002E5AE4 /* Crypto.swift */,
 			);
 			name = Crypto;
+			sourceTree = "<group>";
+		};
+		9BB8254E1A662AE5004129E2 /* Tasker */ = {
+			isa = PBXGroup;
+			children = (
+				9BB8254F1A662B0B004129E2 /* TaskerController.swift */,
+				9BB825591A66DB38004129E2 /* TaskEditController.swift */,
+				9B9BED731A687349001847DD /* TaskDetailController.swift */,
+			);
+			name = Tasker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,11 +551,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BF4DC6B1A662015006088F2 /* TickSelected@2x.png in Resources */,
+				9BB825561A66DAFE004129E2 /* Vault@2x.png in Resources */,
+				9BF4DC6A1A662015006088F2 /* TickSelected.png in Resources */,
 				9B2A16461A535193002E5AE4 /* Montserrat-Bold.ttf in Resources */,
+				9BB825601A66E3F0004129E2 /* BackwardWhite.png in Resources */,
+				9BB825551A66DAFE004129E2 /* Vault.png in Resources */,
+				9BF4DC631A661FFB006088F2 /* VaultSelected.png in Resources */,
+				9BB8255F1A66E3F0004129E2 /* BackwardWhite@2x.png in Resources */,
+				9BF4DC621A661FFB006088F2 /* VaultSelected@2x.png in Resources */,
+				9B9BED901A70930A001847DD /* List@2x.png in Resources */,
 				9B0B3AC11A58F5BB003222B9 /* asphalosPortrait.png in Resources */,
+				9B9BED911A70930A001847DD /* List.png in Resources */,
 				9B2A16471A535193002E5AE4 /* Montserrat-Regular.ttf in Resources */,
+				9BB825621A66E3F0004129E2 /* ForwardWhite.png in Resources */,
 				9B2A15B21A5346CF002E5AE4 /* Main.storyboard in Resources */,
+				9BB825571A66DAFE004129E2 /* Tick.png in Resources */,
+				9BB825581A66DAFE004129E2 /* Tick@2x.png in Resources */,
+				9B9BED8E1A70930A001847DD /* ListOn@2x.png in Resources */,
 				9B2A15841A534547002E5AE4 /* LaunchScreen.xib in Resources */,
+				9BB825611A66E3F0004129E2 /* ForwardWhite@2x.png in Resources */,
+				9B9BED8F1A70930A001847DD /* ListOn.png in Resources */,
 				9B2A15811A534547002E5AE4 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,6 +605,7 @@
 				9B2A15E41A534848002E5AE4 /* FormDateCell.swift in Sources */,
 				9B2A163F1A534E93002E5AE4 /* Crypto.swift in Sources */,
 				9B2A15C01A53471B002E5AE4 /* TouchAuthenticationController.swift in Sources */,
+				9B9BED741A687349001847DD /* TaskDetailController.swift in Sources */,
 				9B2A16061A5348BA002E5AE4 /* Account.swift in Sources */,
 				9B2A15F91A534867002E5AE4 /* FormOptionsSelectorController.swift in Sources */,
 				9BE9F07C1A5365CF00105358 /* FormPlainTextFieldCell.swift in Sources */,
@@ -529,6 +615,7 @@
 				9B2A15B01A534690002E5AE4 /* SweetAlert.swift in Sources */,
 				9B2A15F31A534857002E5AE4 /* FormTitleCell.swift in Sources */,
 				9B2A16021A534876002E5AE4 /* FormSectionDescriptor.swift in Sources */,
+				9BB825501A662B0B004129E2 /* TaskerController.swift in Sources */,
 				9B2A15F41A534857002E5AE4 /* FormValueCell.swift in Sources */,
 				9B2A15A21A5345ED002E5AE4 /* Globals.swift in Sources */,
 				9B2A15E81A534848002E5AE4 /* FormSelectorCell.swift in Sources */,
@@ -536,8 +623,10 @@
 				9BE9F07E1A53678D00105358 /* TODO.md in Sources */,
 				9B2A15E91A534848002E5AE4 /* FormSwitchCell.swift in Sources */,
 				9B2A16431A534F60002E5AE4 /* LocksmithRequest.swift in Sources */,
+				9BB8255A1A66DB38004129E2 /* TaskEditController.swift in Sources */,
 				9B2A15EB1A534848002E5AE4 /* FormTextFieldCell.swift in Sources */,
 				9B2A157A1A534547002E5AE4 /* asphalos.xcdatamodeld in Sources */,
+				9B6DBD271A67196800EAD5C5 /* Task.swift in Sources */,
 				9B2A16011A534876002E5AE4 /* FormRowDescriptor.swift in Sources */,
 				9B2A15C51A534738002E5AE4 /* SettingsController.swift in Sources */,
 				9B2A16041A5348BA002E5AE4 /* Category.swift in Sources */,
@@ -663,11 +752,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Saikiran Yerram (PUWH999486)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = asphalos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5a396689-968b-4b5b-b559-11b8dddde54d";
+				PROVISIONING_PROFILE = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(SRCROOT)/asphalos/asphalos-Bridging-Header.h";
 			};
 			name = Debug;
@@ -676,11 +766,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Saikiran Yerram (PUWH999486)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = asphalos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5a396689-968b-4b5b-b559-11b8dddde54d";
+				PROVISIONING_PROFILE = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(SRCROOT)/asphalos/asphalos-Bridging-Header.h";
 			};
 			name = Release;
@@ -755,9 +846,10 @@
 		9B2A15781A534547002E5AE4 /* asphalos.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9B9BED751A68B3AC001847DD /* asphalos 2.xcdatamodel */,
 				9B2A15791A534547002E5AE4 /* asphalos.xcdatamodel */,
 			);
-			currentVersion = 9B2A15791A534547002E5AE4 /* asphalos.xcdatamodel */;
+			currentVersion = 9B9BED751A68B3AC001847DD /* asphalos 2.xcdatamodel */;
 			path = asphalos.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

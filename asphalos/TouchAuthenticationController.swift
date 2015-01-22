@@ -126,6 +126,6 @@ class TouchAuthenticationController: UIViewController {
     }
 
     private func navigateToMainController() {
-        self.presentAsRootController("PasswordManagerNavigationController", transitionStyle: UIViewAnimationOptions.TransitionFlipFromRight)
+        self.presentAsRootController("MainController", transitionStyle: UIViewAnimationOptions.TransitionFlipFromBottom)
     }
 }
