@@ -83,7 +83,7 @@ class TaskViewCell: UITableViewCell /*SWTableViewCell*/ {
         var stringAttributes:NSDictionary = [NSFontAttributeName:self.textLabel!.font!]
         var size:CGSize = text.boundingRectWithSize(CGSizeMake(textLabelWidth, 20000.0),
             options: options,
-            attributes: stringAttributes,
+            attributes: stringAttributes as [NSObject : AnyObject],
             context: nil).size
         
         if (size.height < 21) {

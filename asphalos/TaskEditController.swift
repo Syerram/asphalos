@@ -112,16 +112,16 @@ class TaskEditController: FormViewController, FormViewControllerDelegate {
 
     func save() {
         let values = self.form.formValues()
-        let length = (values.objectForKey("length") as String).toInt()!
+        let length = (values.objectForKey("length") as! String).toInt()!
 
         let isNew = self.isNew
         if isNew {
             self.task = NSManagedObject.newEntity("Task") as Task
         }
-        self.task.length = (values.objectForKey("length") as String).toInt()!
+        self.task.length = (values.objectForKey("length") as! String).toInt()!
         self.task.startDate = getTaskStartTime()
-        self.task.name = values.objectForKey(Fields.Task) as String
-        self.task.info = (values.objectForKey("info") as String)
+        self.task.name = values.objectForKey(Fields.Task) as! String
+        self.task.info = (values.objectForKey("info") as! String)
         self.task.completed = false
         self.task.actual = 0
         self.task.order = nextSlot

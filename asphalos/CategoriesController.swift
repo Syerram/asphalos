@@ -43,7 +43,7 @@ class CategoriesController: UITableViewController, CategoryDelegate, SettingsDel
 
     ///MARK: Refresh methods
     func loadData(reload:Bool = false) {
-        self.categories = NSManagedObject.fetchAll("Category", sortKeys: [("name", true)]) as [Category]
+        self.categories = NSManagedObject.fetchAll("Category", sortKeys: [("name", true)]) as! [Category]
         if reload {
             self.tableView.reloadData()
         }
@@ -76,7 +76,7 @@ class CategoriesController: UITableViewController, CategoryDelegate, SettingsDel
     func settings() {
         self.pushControllerOnNavigationStack("SettingsController", callback: { (controller:SettingsController) -> () in
             controller.settingsDelegate = self
-        }, transitionSyle: nil)
+        })
     }
 
     // MARK: - Table view data source
@@ -101,9 +101,9 @@ class CategoriesController: UITableViewController, CategoryDelegate, SettingsDel
             cell.textLabel?.text = accountResults[indexPath.row].name
             cell.detailTextLabel?.text = accountResults[indexPath.row].category.name
         } else {
-            cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as UITableViewCell
-            (cell.contentView.viewWithTag(1) as UILabel).text = categories[indexPath.row].name
-            (cell.contentView.viewWithTag(2) as UILabel).text = "\(categories[indexPath.row].accountCount) accounts"
+            cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as! UITableViewCell
+            (cell.contentView.viewWithTag(1) as! UILabel).text = categories[indexPath.row].name
+            (cell.contentView.viewWithTag(2) as! UILabel).text = "\(categories[indexPath.row].accountCount) accounts"
         }
         return cell
     }
@@ -129,10 +129,10 @@ class CategoriesController: UITableViewController, CategoryDelegate, SettingsDel
         var editAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Edit") {
             (action, indexPath) -> Void in
             println("Edit")
-            self.pushControllerOnNavigationStack("CategoryEditController", callback: { (controller:CategoryEditController) -> () in
+            self.pushControllerOnNavigationStack("CategoryEditController", transitionSyle: nil, callback: { (controller:CategoryEditController) -> () in
                 controller.category = self.categories[indexPath.row]
                 controller.categoryDelegate = self
-                }, transitionSyle: nil)
+                })
         }
         editAction.backgroundColor = UIColor.greenColor()
 
@@ -146,12 +146,12 @@ class CategoriesController: UITableViewController, CategoryDelegate, SettingsDel
 
     //MARK: Private
     private func filter(q:String) {
-        self.accountResults = NSManagedObject.fetch("Account", predicates: { () -> NSPredicate in
-            return NSPredicate(format: "%K CONTAINS[cd] %@", "name", q)!
-        }, sortKeys: [("name", true)]) as [Account]
+        self.accountResults = (NSManagedObject.fetch("Account", sortKeys: [("name", true)], predicates: { () -> NSPredicate in
+            return NSPredicate(format: "%K CONTAINS[cd] %@", argumentArray: ["name", q])
+        }) as? [Account])!
     }
 
-    func searchDisplayController(controller: UISearchDisplayController!, shouldReloadTableForSearchString searchString: String!) -> Bool {
+    func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchString searchString: String!) -> Bool {
         self.filter(searchString)
         return true
     }

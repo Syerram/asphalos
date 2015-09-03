@@ -45,9 +45,9 @@ class CategoryController: UITableViewController, AccountDelegate {
 
     ///MARK: Refresh methods
     func loadData(reload:Bool = false) {
-        self.accounts = NSManagedObject.fetch("Account", predicates: { () -> NSPredicate in
-            return NSPredicate(format: "category = %@", self.category)!
-        }, sortKeys: [("name", true)]) as [Account]
+        self.accounts = NSManagedObject.fetch("Account", sortKeys: [("name", true)], predicates: { () -> NSPredicate in
+            return NSPredicate(format: "category = %@", argumentArray: [self.category])
+        }) as! [Account]
         if reload {
             self.tableView.reloadData()
         }
@@ -90,8 +90,8 @@ class CategoryController: UITableViewController, AccountDelegate {
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("AccountCell", forIndexPath: indexPath) as UITableViewCell
-        (cell.contentView.viewWithTag(1) as UILabel).text = accounts[indexPath.row].name
+        let cell = tableView.dequeueReusableCellWithIdentifier("AccountCell", forIndexPath: indexPath) as! UITableViewCell
+        (cell.contentView.viewWithTag(1) as! UILabel).text = accounts[indexPath.row].name
         return cell
     }
 

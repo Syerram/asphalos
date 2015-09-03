@@ -55,9 +55,11 @@ class SFSwiftNotification: UIView, UICollisionBehaviorDelegate, UIDynamicAnimato
         self.animationType = animationType
         self.direction = direction
         self.delegate = delegate
-        
+
         label = UILabel(frame: CGRectMake(5, 0, frame.width - 5, frame.height))
-        label.text = title
+        if let _title = title {
+            label.text = _title as String
+        }
         label.textAlignment = NSTextAlignment.Center
         label.preferredMaxLayoutWidth = self.frame.size.width
         self.setTranslatesAutoresizingMaskIntoConstraints(false)

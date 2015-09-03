@@ -59,7 +59,7 @@ class FormTextareaCell: FormBaseCell, UITextViewDelegate {
 
     func textViewDidChange(textView: UITextView) {
         let trimmedText = textView.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        rowDescriptor.value = countElements(trimmedText) > 0 ? textView.text : nil
+        rowDescriptor.value = count(trimmedText) > 0 ? textView.text : nil
     }
     
     

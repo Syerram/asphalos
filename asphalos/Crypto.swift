@@ -23,6 +23,6 @@ extension String {
             //2 digits of zero-padded hex
             output.appendFormat("%02x", byte)
         }
-        return output
+        return output as String
     }
 }

@@ -99,9 +99,9 @@ class AccountEditController: FormViewController, FormViewControllerDelegate {
             category.accountCount = NSNumber(int: category.accountCount.integerValue + 1)
         }
         ///MARK: TODO Perhaps we can use property descriptors and then check validity on the object itself
-        account!.name = values[Fields.Name] as String
-        account!.userName = values[Fields.UserName] as String
-        account!.password = values[Fields.Password] as String
+        account!.name = values[Fields.Name] as! String
+        account!.userName = values[Fields.UserName] as! String
+        account!.password = values[Fields.Password] as! String
         account!.category = self.category
 
         //Non required values

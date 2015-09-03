@@ -22,18 +22,13 @@ class MasterPasswordTextField: UITextField, UITextFieldDelegate {
         self.localInit()
     }
 
-    override init() {
-        super.init()
-        self.localInit()
-    }
-
     private func localInit() {
         self.delegate = self
         self.secureTextEntry = true
     }
 
     func isValid() -> Bool{
-        return !self.text.isEmpty && self.text.utf16Count > 10
+        return !self.text.isEmpty && count(self.text.utf16) > 10
     }
 
 }

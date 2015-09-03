@@ -53,12 +53,12 @@ class TaskDetailController: UITableViewController, TaskDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell!
         if indexPath.row == 0 {
-            cell = tableView.dequeueReusableCellWithIdentifier(TaskCell.Identifier, forIndexPath: indexPath) as UITableViewCell
-            (cell.contentView.viewWithTag(TaskCell.Task) as UILabel).text = task.name
-            (cell.contentView.viewWithTag(TaskCell.Length) as UILabel).text = task.lengthFormatted
+            cell = tableView.dequeueReusableCellWithIdentifier(TaskCell.Identifier, forIndexPath: indexPath) as! UITableViewCell
+            (cell.contentView.viewWithTag(TaskCell.Task) as! UILabel).text = task.name
+            (cell.contentView.viewWithTag(TaskCell.Length) as! UILabel).text = task.lengthFormatted
         } else {
-            cell = tableView.dequeueReusableCellWithIdentifier(TaskDetail.Identifier, forIndexPath: indexPath) as UITableViewCell
-            (cell.contentView.viewWithTag(TaskDetail.Detail) as UILabel).text = task.info
+            cell = tableView.dequeueReusableCellWithIdentifier(TaskDetail.Identifier, forIndexPath: indexPath) as! UITableViewCell
+            (cell.contentView.viewWithTag(TaskDetail.Detail) as! UILabel).text = task.info
         }
         return cell
     }
@@ -80,7 +80,7 @@ class TaskDetailController: UITableViewController, TaskDelegate {
             controller.currentDate = self.currentDate
             controller.nextSlot = self.nextSlot
             controller.taskDelegate = self
-        }, transitionSyle: nil)
+        })
     }
 
     func taskUpdated(task: Task, isNew: Bool) {

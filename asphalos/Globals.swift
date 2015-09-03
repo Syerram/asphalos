@@ -63,7 +63,7 @@ class PasswordManager {
         if let _err = error {
             return (false, _err)
         } else {
-            var master = dictionary?.objectForKey("asphalos.master") as String
+            var master = dictionary?.objectForKey("asphalos.master") as! String
             return (master == password.sha1(), nil)
         }
     }
@@ -79,7 +79,7 @@ class PasswordManager {
             randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
         }
 
-        return randomString
+        return randomString as String
     }
 }
 

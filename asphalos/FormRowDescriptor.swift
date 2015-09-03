@@ -95,7 +95,7 @@ class FormRowDescriptor: NSObject {
     /// MARK: Public interface
     
     func titleForOptionAtIndex(index: Int) -> String! {
-        return titleForOptionValue(options[index] as NSObject)
+        return titleForOptionValue(options[index] as! NSObject)
     }
     
     func titleForOptionValue(optionValue: NSObject) -> String! {
@@ -103,7 +103,7 @@ class FormRowDescriptor: NSObject {
             return titleFormatter(optionValue)
         }
         else if optionValue is String {
-            return optionValue as String
+            return optionValue as! String
         }
         return "\(optionValue)"
     }

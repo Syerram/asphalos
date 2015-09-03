@@ -59,7 +59,7 @@ class CategoryEditController: FormViewController, FormViewControllerDelegate {
         if isNew {
             category = NSManagedObject.newEntity("Category") as Category
         }
-        category!.name = (values[Fields.Name] as String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        category!.name = (values[Fields.Name] as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         Category.save()
         self.proxy(categoryDelegate, callback: { (object:CategoryDelegate) -> () in
             object.categoryUpdated(self.category!, isNew: isNew)

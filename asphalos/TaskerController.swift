@@ -85,7 +85,7 @@ class TaskerController: UITableViewController, TaskDelegate, TaskMarked {
     func loadData(reload:Bool = false) {
         var predicate:NSPredicate!
         if toggleListOn {
-            predicate = NSPredicate(format: "completed = %@", false)!
+            predicate = NSPredicate(format: "completed = %@", false)
         } else {
             //Get day components from the current date and create range of one day
             var currentDayComponents = calendar.components(NSCalendarUnit.DayCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.YearCalendarUnit, fromDate: currentDate)
@@ -95,12 +95,12 @@ class TaskerController: UITableViewController, TaskDelegate, TaskMarked {
             var dayComponent = NSDateComponents()
             dayComponent.day = 1
             var endDate = self.calendar.dateByAddingComponents(dayComponent, toDate: startDate, options: NSCalendarOptions.allZeros)!
-            predicate = NSPredicate(format: "startDate >= %@ AND startDate <= %@ AND completed = %@", startDate, endDate, false)!
+            predicate = NSPredicate(format: "startDate >= %@ AND startDate <= %@ AND completed = %@", argumentArray: [startDate, endDate, false])
         }
 
-        self.tasks = NSManagedObject.fetch("Task", predicates:{ () -> NSPredicate in
+        self.tasks = NSManagedObject.fetch("Task", sortKeys: [("startDate", true), ("order", true)], predicates:{ () -> NSPredicate in
             return predicate
-            }, sortKeys: [("startDate", true), ("order", true)]) as [Task]
+            }) as! [Task]
 
         if reload {
             self.tableView.reloadData()
@@ -123,7 +123,7 @@ class TaskerController: UITableViewController, TaskDelegate, TaskMarked {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TaskViewCell", forIndexPath: indexPath) as TaskViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("TaskViewCell", forIndexPath: indexPath) as! TaskViewCell
         self.updateCell(cell, task: tasks[indexPath.row], rowNum: indexPath.row)
         cell.taskMarkDelegate = self
         return cell
@@ -164,7 +164,7 @@ class TaskerController: UITableViewController, TaskDelegate, TaskMarked {
             controller.currentDate = self.currentDate
             controller.nextSlot = self.nextSlot()
             controller.taskDelegate = self
-        }, transitionSyle: nil)
+        })
     }
 
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -178,7 +178,7 @@ class TaskerController: UITableViewController, TaskDelegate, TaskMarked {
             controller.taskDelegate = self
             controller.currentDate = self.currentDate
             controller.nextSlot = self.nextSlot()
-        }, transitionSyle: nil)
+        })
     }
 
     func toggleList() {
@@ -231,7 +231,7 @@ class TaskerController: UITableViewController, TaskDelegate, TaskMarked {
         if toggleListOn {
             return
         }
-        var longPress = sender as UILongPressGestureRecognizer
+        var longPress = sender as! UILongPressGestureRecognizer
         var state = longPress.state
         var location:CGPoint = longPress.locationInView(self.tableView)
         var indexPath = self.tableView.indexPathForRowAtPoint(location)
@@ -270,8 +270,8 @@ class TaskerController: UITableViewController, TaskDelegate, TaskMarked {
                 Task.SwapOrder(tasks[indexPath!.row], destination: tasks[sourceIndex!.row])
                 (tasks[indexPath!.row], tasks[sourceIndex!.row]) = (tasks[sourceIndex!.row], tasks[indexPath!.row])
                 self.tableView.moveRowAtIndexPath(sourceIndex!, toIndexPath: indexPath!)
-                self.updateCell(self.tableView.cellForRowAtIndexPath(sourceIndex!)! as TaskViewCell, task: tasks[sourceIndex!.row], rowNum: sourceIndex!.row)
-                self.updateCell(self.tableView.cellForRowAtIndexPath(indexPath!)! as TaskViewCell, task: tasks[indexPath!.row], rowNum: indexPath!.row)
+                self.updateCell(self.tableView.cellForRowAtIndexPath(sourceIndex!)! as! TaskViewCell, task: tasks[sourceIndex!.row], rowNum: sourceIndex!.row)
+                self.updateCell(self.tableView.cellForRowAtIndexPath(indexPath!)! as! TaskViewCell, task: tasks[indexPath!.row], rowNum: indexPath!.row)
                 UIView.delay(0.5, callback: { () -> () in
                     self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
                 })
@@ -315,7 +315,7 @@ class TaskerController: UITableViewController, TaskDelegate, TaskMarked {
         Task.save()
         if selected {
             self.tasks.removeAtIndex(rowNum)
-            let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: rowNum, inSection: 0)) as TaskViewCell
+            let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: rowNum, inSection: 0)) as! TaskViewCell
             self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: rowNum, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
             UIView.delay(0.5, callback: { () -> () in
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)

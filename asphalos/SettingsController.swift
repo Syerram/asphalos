@@ -68,7 +68,7 @@ class SettingsController: FormViewController, FormViewControllerDelegate {
         if didSelectRowDescriptor.tag == Fields.ResetMaster {
             self.pushControllerOnNavigationStack("MasterPasswordController", callback: { (controller:MasterPasswordController) -> () in
                 //
-            }, transitionSyle: nil)
+            })
         } else if didSelectRowDescriptor.tag == Fields.PurgeAll {
             SweetAlert().showAlert("Are you sure?", subTitle: "You will lose all your data. It cannot be recovered", style: AlertStyle.Warning, buttonTitle: "Cancel", buttonColor: Globals.Theme.AppTintColor , otherButtonTitle: "Yes, I am sure", action: { (isOtherButton) -> Void in
                 if isOtherButton == false {

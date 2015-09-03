@@ -14,12 +14,12 @@ extension NSManagedObject {
 
     ///Save all of the changes
     class func save() {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.saveContext()
     }
 
     class func managedObjectContext() -> NSManagedObjectContext? {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         if let managedObjContext = appDelegate.managedObjectContext {
             return managedObjContext
         } else {
@@ -57,7 +57,7 @@ extension NSManagedObject {
 
     ///New entity
     class func newEntity<T>(entityName:String) -> T {
-        return NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: self.managedObjectContext()!) as T
+        return NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: self.managedObjectContext()!) as! T
     }
 
     ///Prepare sort descriptors for list of tuples with key, ascending order
@@ -83,7 +83,7 @@ extension NSManagedObject {
     }
 
     ///Return specific objects for the given predicate
-    class func fetch(entityName:String, predicates:() -> NSPredicate, sortKeys:[(String, Bool)]? = nil) -> [NSManagedObject] {
+    class func fetch(entityName:String, sortKeys:[(String, Bool)]? = nil, predicates:() -> NSPredicate) -> [NSManagedObject] {
         let fetchRequest = NSFetchRequest(entityName: entityName)
         fetchRequest.predicate = predicates()
         if let _sortKeys = sortKeys {

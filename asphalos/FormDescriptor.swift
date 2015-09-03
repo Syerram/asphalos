@@ -45,7 +45,7 @@ class FormDescriptor: NSObject {
                 }
             }
         }
-        return formValues.copy() as NSDictionary
+        return formValues.copy() as! NSDictionary
     }
     
     func validateForm() -> FormRowDescriptor! {

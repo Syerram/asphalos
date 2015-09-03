@@ -12,7 +12,7 @@ import UIKit
 extension UIWindow {
     ///Navigate to root controller for the given nib
     func navigateToRootController(nibName: String) {
-        var rootController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(nibName) as UIViewController
+        var rootController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(nibName) as! UIViewController
         UIView.transitionWithView(self, duration: 0.5, options: UIViewAnimationOptions.TransitionCurlDown, animations: {
             self.rootViewController = rootController
             }, completion: nil)
@@ -226,19 +226,19 @@ extension UIViewController {
     ///Callers have the opportunity to work with the controller once its created by passing code block to callback
     ///@param: nibName: Pass the storyboard name for the controller
     ///@param: callback: Pass the code block. Ensure to provide the actual type of your controller
-    func pushControllerOnNavigationStack<T>(nibName:String, callback:(controller:T) -> (), transitionSyle:UIViewAnimationTransition? = nil) -> T {
+    func pushControllerOnNavigationStack<T>(nibName:String, transitionSyle:UIViewAnimationTransition? = nil, callback:(controller:T) -> ()) -> T {
         self.navigationItem.title = ""
-        var controller:T = self.storyboard?.instantiateViewControllerWithIdentifier(nibName)! as T
+        var controller:T = self.storyboard?.instantiateViewControllerWithIdentifier(nibName) as! T
         callback(controller: controller)
         var currentView = self.navigationController!.view
         if transitionSyle != nil {
             UIView.animateWithDuration(0.75, animations: { () -> Void in
                 UIView.setAnimationCurve(UIViewAnimationCurve.EaseIn)
-                self.navigationController?.pushViewController(controller as UIViewController, animated: false)
+                self.navigationController?.pushViewController(controller as! UIViewController, animated: false)
                 UIView.setAnimationTransition(transitionSyle!, forView: currentView, cache: false)
                 }, completion: nil)
         } else {
-            self.navigationController?.pushViewController(controller as UIViewController, animated: true)
+            self.navigationController?.pushViewController(controller as! UIViewController, animated: true)
         }
         return controller
     }
@@ -250,18 +250,18 @@ extension UIViewController {
         if transitionSyle != nil {
             UIView.animateWithDuration(0.75, animations: { () -> Void in
                 UIView.setAnimationCurve(UIViewAnimationCurve.EaseIn)
-                self.navigationController?.pushViewController(controller as UIViewController, animated: false)
+                self.navigationController?.pushViewController(controller as! UIViewController, animated: false)
                 UIView.setAnimationTransition(transitionSyle!, forView: currentView, cache: false)
                 }, completion: nil)
         } else {
-            self.navigationController?.pushViewController(controller as UIViewController, animated: true)
+            self.navigationController?.pushViewController(controller as! UIViewController, animated: true)
         }
     }
 
     ///Present the controller as a root controller
     func presentAsRootController(nibName:String, transitionStyle:UIViewAnimationOptions) {
-        var controller = self.storyboard!.instantiateViewControllerWithIdentifier(nibName) as UIViewController
-        var appDelegate:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var controller = self.storyboard!.instantiateViewControllerWithIdentifier(nibName) as! UIViewController
+        var appDelegate:AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         UIView.transitionWithView(appDelegate.window!, duration: 0.5, options: transitionStyle, animations: { () -> Void in
             appDelegate.window!.rootViewController = controller
         }, completion: nil)
@@ -270,9 +270,9 @@ extension UIViewController {
 
     ///Present as Model
     func presentAsModalController<T>(nibName:String, callback:(controller:T) -> ()) {
-        var controller:T = self.storyboard?.instantiateViewControllerWithIdentifier(nibName)! as T
+        var controller:T = self.storyboard?.instantiateViewControllerWithIdentifier(nibName)! as! T
         callback(controller: controller)
-        var presentingController = controller as UIViewController
+        var presentingController = controller as! UIViewController
         presentingController.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
         self.presentViewController(presentingController, animated: true, completion: nil)
     }

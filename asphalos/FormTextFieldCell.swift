@@ -119,7 +119,7 @@ class FormTextFieldCell: FormBaseCell {
     override func defaultVisualConstraints() -> [String] {
         let _imageView = self.imageView! as UIImageView
         if _imageView.image != nil {
-            if titleLabel.text != nil && countElements(titleLabel.text!) > 0 {
+            if titleLabel.text != nil && count(titleLabel.text!) > 0 {
                 return ["H:[imageView]-[titleLabel]-[textField]-16-|"]
             }
             else {
@@ -127,7 +127,7 @@ class FormTextFieldCell: FormBaseCell {
             }
         }
         else {
-            if titleLabel.text != nil && countElements(titleLabel.text!) > 0 {
+            if titleLabel.text != nil && count(titleLabel.text!) > 0 {
                 return ["H:|-16-[titleLabel]-[textField]-16-|"]
             }
             else {
@@ -148,6 +148,6 @@ class FormTextFieldCell: FormBaseCell {
     
     func editingChanged(sender: UITextField) {
         let trimmedText = sender.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        rowDescriptor.value = countElements(trimmedText) > 0 ? sender.text : nil
+        rowDescriptor.value = count(trimmedText) > 0 ? sender.text : nil
     }
 }
