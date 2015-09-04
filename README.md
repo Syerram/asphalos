@@ -12,5 +12,6 @@ Learning is boring but learning with a project is extremely fun. Shot out to Ray
 
 # TODO
 
+* Tests (there are ZERO tests)
 * Send encrypted `.tar` file to email
 * Remote purge option (Would need Parse integration)
